@@ -1,12 +1,19 @@
 import React from 'react';
 import './QuackerNews.css';
 
-function QuackerNews() {
-  return (
-    <div className="App">
-      HelloWorld!
-    </div>
-  );
+class QuackerNews extends React.Component {
+  render() {
+    return (
+      <div className="App">
+        <header>
+          <h1>
+            Quacker News
+          </h1>
+        </header>
+        HelloWorld!
+      </div>
+    );
+  }
 }
 
 export default QuackerNews;
