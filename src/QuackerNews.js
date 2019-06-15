@@ -1,6 +1,9 @@
 import React from 'react';
 import './QuackerNews.css';
 
+import TopStoriesContainer from './components/TopStoriesContainer.js';
+import StoryCommentsContainer from './components/StoryCommentsContainer.js';
+
 class QuackerNews extends React.Component {
   render() {
     return (
@@ -11,6 +14,8 @@ class QuackerNews extends React.Component {
           </h1>
         </header>
         HelloWorld!
+        <TopStoriesContainer />
+        <StoryCommentsContainer />
       </div>
     );
   }
