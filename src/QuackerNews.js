@@ -7,6 +7,10 @@ import TopStoriesContainer from './components/TopStoriesContainer.js';
 import StoryCommentsContainer from './components/StoryCommentsContainer.js';
 
 class QuackerNews extends React.Component {
+  state = {
+    topStoriesIds: null
+  }
+
   componentDidMount() {
     fetchTopStoriesIds().then(resolved => this.setState({topStoriesIds: resolved}));
   }
@@ -20,7 +24,7 @@ class QuackerNews extends React.Component {
           </h1>
         </header>
         HelloWorld!
-        <TopStoriesContainer />
+        <TopStoriesContainer topStoriesIds={this.state.topStoriesIds}/>
         <StoryCommentsContainer />
       </div>
     );
