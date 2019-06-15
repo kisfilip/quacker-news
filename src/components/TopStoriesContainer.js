@@ -32,6 +32,7 @@ class TopStoriesContainer extends React.Component {
       <div>
         TopStoriesContainer
         { storiesList }
+        <button> Next 30 items </button>
       </div>
     );
   }
