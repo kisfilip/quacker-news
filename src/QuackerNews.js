@@ -1,7 +1,7 @@
 import React from 'react';
 import './QuackerNews.css';
 
-import fetchTopStoriesIds from './components/api/fetchTopStoriesIds';
+import fetchTopStoriesIds from './components/api/fetchTopStoriesIds.js';
 
 import TopStoriesContainer from './components/TopStoriesContainer.js';
 import StoryCommentsContainer from './components/StoryCommentsContainer.js';
