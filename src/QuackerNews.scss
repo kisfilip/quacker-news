@@ -27,7 +27,20 @@
           display: flex;
           min-width: 2rem;
           justify-content: center;
-          align-items: center;
+          align-items: top;
+        }
+        > article {
+          display: flex;
+          flex-direction: column;
+          div {
+            display: flex;
+            justify-content: flex-start;
+            h1 {
+              display: inline-block;
+              margin: 0;
+              font-size: 1rem;
+            }
+          }
         }
       }
     }

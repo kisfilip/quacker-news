@@ -22,7 +22,9 @@ class StoryListItem extends React.Component {
         <article>
           <div>
             <h1>
-              {title}
+              <a href={url} target="_blank">
+                {title}
+              </a>
             </h1>
             <a href={url} target="_blank">
               ({domain})
