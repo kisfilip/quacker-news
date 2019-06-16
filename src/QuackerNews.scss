@@ -20,6 +20,7 @@
       .Story-list-item {
         display: flex;
         min-height: 2rem;
+        padding: 0.2rem;
         &:nth-child(odd) {
           background: #eee;
         }
@@ -32,13 +33,22 @@
         > article {
           display: flex;
           flex-direction: column;
+          text-color: #111;
           div {
             display: flex;
             justify-content: flex-start;
             h1 {
               display: inline-block;
               margin: 0;
+              padding-right: 0.2rem;
               font-size: 1rem;
+            }
+            a {
+              text-decoration: none;
+              color: #111;
+            }
+            span {
+              margin-right: 0.2rem;
             }
           }
         }
