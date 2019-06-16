@@ -1,5 +1,5 @@
 .App-quacker-news {
-  text-align: center;
+  text-align: left;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -37,6 +37,7 @@
           div {
             display: flex;
             justify-content: flex-start;
+            flex-wrap: wrap;
             h1 {
               display: inline-block;
               margin: 0;
