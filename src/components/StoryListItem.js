@@ -6,12 +6,13 @@ class StoryListItem extends React.Component {
   render() {
     const {id, title, by, descendants, score, url} = this.props.storyObj;
     const orderNum = this.props.orderNum;
-
-    const domain = (function() {
+    const commentString = descendants === 1 ? "comment" : "comments";
+    const scoreString = score === 1? "point" : "points";
+    const domain = (function domainFromUrl() {
       const a = document.createElement('a');
       a.setAttribute('href', url);
       return a.hostname;
-    })()
+    })();
 
     return (
       <div className="Story-list-item">
@@ -29,13 +30,13 @@ class StoryListItem extends React.Component {
           </div>
           <div>
             <span>
-              {score} points by {by}
+              {score} {scoreString} by {by}
             </span>
             <span>
               |
             </span>
             <Link to={`/story/${id}`}>
-              {descendants} comments
+              {descendants} {commentString}
             </Link>
           </div>
         </article>
