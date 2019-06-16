@@ -7,19 +7,25 @@ import StoryListItem from './StoryListItem';
 
 class TopStoriesContainer extends React.Component {
   state = {
-    topStoriesObjs: null
+    topStoriesObjs: null,
+    pageId: null
   }
 
   componentDidUpdate() {
-    if (this.props.topStoriesIds && !this.state.topStoriesObjs) {
-      fetchTopStoriesObjs(this.props.topStoriesIds)
-        .then(resolved => this.setState({topStoriesObjs: resolved}));
+    let pageNum = 1;
+    if (this.props.match.params.id) {
+      pageNum = Number(this.props.match.params.id);
+    }
+    if (this.state.pageId === null || this.state.pageId !== this.props.match.params.id) {
+      fetchTopStoriesObjs(this.props.topStoriesIds, pageNum)
+        .then(resolved => this.setState({
+          topStoriesObjs: resolved,
+          pageId: this.props.match.params.id
+        }));
     }
   }
 
   render() {
-    console.log(this.state)
-    console.log(this.props)
     let storiesList
     if (this.state.topStoriesObjs) {
       storiesList = this.state.topStoriesObjs.map(storyObj => {
