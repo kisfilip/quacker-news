@@ -41,6 +41,8 @@ class TopStoriesContainer extends React.Component {
     if (this.props.match.params.id) {
       urlMatch = "page" + (Number(this.props.match.params.id) + 1);
     }
+    // TODO: disable link button via css pointer-events
+    //       until page loads to prevent stacking api calls
     return (
       <div>
         TopStoriesContainer
