@@ -9,9 +9,10 @@ class StoryListItem extends React.Component {
     const commentString = descendants === 1 ? "comment" : "comments";
     const scoreString = score === 1? "point" : "points";
     const domain = (function domainFromUrl() {
+      if (!url) return null;
       const a = document.createElement('a');
       a.setAttribute('href', url);
-      return a.hostname;
+      return `(${a.hostname})`;
     })();
 
     return (
@@ -27,7 +28,7 @@ class StoryListItem extends React.Component {
               </a>
             </h1>
             <a href={url} target="_blank">
-              ({domain})
+              {domain}
             </a>
           </div>
           <div>
