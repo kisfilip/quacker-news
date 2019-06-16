@@ -6,6 +6,13 @@ class StoryListItem extends React.Component {
   render() {
     const {id, title, by, descendants, score, url} = this.props.storyObj;
     const orderNum = this.props.orderNum;
+
+    const domain = (function() {
+      const a = document.createElement('a');
+      a.setAttribute('href', url);
+      return a.hostname;
+    })()
+
     return (
       <div className="Story-list-item">
         <aside>
@@ -17,7 +24,7 @@ class StoryListItem extends React.Component {
               {title}
             </h1>
             <a href={url} target="_blank">
-              ({url})
+              ({domain})
             </a>
           </div>
           <div>
