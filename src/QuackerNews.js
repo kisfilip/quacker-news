@@ -1,4 +1,5 @@
 import React from 'react';
+import {Route, Switch} from 'react-router-dom';
 import './QuackerNews.css';
 
 import fetchTopStoriesIds from './components/api/fetchTopStoriesIds.js';
@@ -24,8 +25,15 @@ class QuackerNews extends React.Component {
           </h1>
         </header>
         HelloWorld!
-        <TopStoriesContainer topStoriesIds={this.state.topStoriesIds}/>
-        <StoryCommentsContainer />
+        <Switch>
+          <Route exact path="/" render={() =>
+            <TopStoriesContainer topStoriesIds={this.state.topStoriesIds}/>
+          }/>
+          <Route path="/page:id" render={() =>
+            <TopStoriesContainer topStoriesIds={this.state.topStoriesIds}/>
+          }/>
+          <Route path="/story/:id" component={StoryCommentsContainer}/>
+        </Switch>
       </div>
     );
   }
