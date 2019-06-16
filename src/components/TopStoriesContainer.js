@@ -8,7 +8,18 @@ import StoryListItem from './StoryListItem';
 class TopStoriesContainer extends React.Component {
   state = {
     topStoriesObjs: null,
-    pageId: null
+    pageId: null,
+    navigateBackToggle: true
+  }
+
+  componentDidMount() {
+    // This will only fire if a component REmounts.
+    // Since the topStoriesIds are not available on initial mount,
+    // this will ensure that the toggle triggers the componentDidUpdate
+    // only when navigating back from a story.
+    if (this.props.topStoriesIds) {
+      this.setState({navigateBackToggle: !this.state.navigateBackToggle})
+    }
   }
 
   // Initial fire when topStoriesIds are recieved.
