@@ -43,6 +43,13 @@ class TopStoriesContainer extends React.Component {
     }
     // TODO: disable link button via css pointer-events
     //       until page loads to prevent stacking api calls
+    //       (the current solution works but for example -
+    //       if a user clicks the 'next 30 items' button
+    //       multiple times in a row (until the page has finished loading),
+    //       the consequent clicks will stack api calls on top of each other)
+    // TODO: navigating back should load previously fetched objects instead
+    //       of fetching them again - this can be solved by pushing new objects
+    //       to state, and getting them from state when navigating back
     return (
       <div>
         TopStoriesContainer
