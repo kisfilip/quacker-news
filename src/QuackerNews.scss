@@ -1,0 +1,74 @@
+.App-quacker-news {
+  text-align: left;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  > header {
+    display: flex;
+    > h1 {
+      margin: 0;
+    }
+  }
+  .Stories-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .Stories-list {
+      display: flex;
+      flex-direction: column;
+      .Story-list-item {
+        display: flex;
+        min-height: 2rem;
+        padding: 0.2rem;
+        &:nth-child(odd) {
+          background: #eee;
+        }
+        > aside {
+          display: flex;
+          min-width: 2rem;
+          justify-content: center;
+          align-items: top;
+        }
+        > article {
+          display: flex;
+          flex-direction: column;
+          text-color: #111;
+          div {
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            h1 {
+              display: inline-block;
+              margin: 0;
+              padding-right: 0.2rem;
+              font-size: 1rem;
+            }
+            a {
+              text-decoration: none;
+              color: #111;
+            }
+            span {
+              margin-right: 0.2rem;
+            }
+          }
+        }
+      }
+    }
+    .Show-next-page {
+      display: block;
+      width: 100%;
+      min-height: 3rem;
+      background-color: #ddd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      color: #111;
+      > span {
+        font-weight: bold;
+      }
+    }
+  }
+}
+

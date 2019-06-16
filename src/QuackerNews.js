@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
-import './QuackerNews.css';
+import './QuackerNews.scss';
 
 import fetchTopStoriesIds from './components/api/fetchTopStoriesIds.js';
 
@@ -18,7 +18,7 @@ class QuackerNews extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App-quacker-news">
         <header>
           <h1>
             Quacker News

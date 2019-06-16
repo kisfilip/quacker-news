@@ -64,10 +64,19 @@ class TopStoriesContainer extends React.Component {
     //       of fetching them again - this can be solved by pushing new objects
     //       to state, and getting them from state when navigating back.
     return (
-      <div>
-        TopStoriesContainer
-        { storiesList }
-        <Link to={urlMatch}> Next 30 items </Link>
+      <div className="Stories-container">
+        <div className="Stories-list">
+          { storiesList }
+        </div>
+
+        <Link
+          to={urlMatch}
+          className="Show-next-page"
+        >
+          <span>
+            More stories
+          </span>
+        </Link>
       </div>
     );
   }
