@@ -18,7 +18,7 @@ class QuackerNews extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App-quacker-news">
         <header>
           <h1>
             Quacker News
