@@ -7,12 +7,14 @@ import StoryListItem from './StoryListItem.js';
 class StoryCommentsContainer extends React.Component {
   state = {
     loading: true,
+    storyObj: null,
     commentsObj: null
   }
 
   componentDidMount() {
     fetchTopStoriesObjs(this.props.match.params.id)
     .then(resolved => {
+      this.setState({storyObj: resolved[0]});
       const commentsObj = fetchStoryCommentsObjs(resolved[0]);
       return commentsObj
     }).then(resolved => this.setState({
@@ -26,19 +28,25 @@ class StoryCommentsContainer extends React.Component {
   }
 
   render() {
-    console.log(this.state)
-    const {commentsObj} = this.state
+    const {storyObj, commentsObj} = this.state
+
     let story = null;
-    let comments = "loading";
-    if (this.state.commentsObj) {
+    if (storyObj) {
       story = (<StoryListItem
-                storyObj = {commentsObj}
-                key = {commentsObj.id}
+                storyObj = {storyObj}
+                key = {storyObj.id}
               />);
+    };
+
+    let comments = "loading";
+    if (commentsObj) {
+      comments = "comments"
     }
+
     return (
       <div>
         {story}
+        {comments}
       </div>
     );
   }
