@@ -3,7 +3,7 @@ import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
 import fetchTopStoriesObjs from './api/fetchTopStoriesObjs.js';
 
-import StoryListItem from './StoryListItem';
+import StoryListItem from './StoryListItem.js';
 
 class TopStoriesContainer extends React.Component {
   state = {
