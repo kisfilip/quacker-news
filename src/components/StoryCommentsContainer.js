@@ -7,18 +7,21 @@ import StoryListItem from './StoryListItem.js';
 class StoryCommentsContainer extends React.Component {
   state = {
     storyObj: null,
-    commentsObjs: null
+    commentsObj: null
   }
 
   componentDidMount() {
     fetchTopStoriesObjs(this.props.match.params.id)
-    .then(resolved => this.setState({storyObj: resolved}));
+    .then(resolved => {
+      const commentsObj = fetchStoryCommentsObjs(resolved[0]);
+      return commentsObj
+    }).then(resolved => this.setState({
+      commentsObj: resolved,
+    }));
   }
 
   componentDidUpdate() {
-    if (this.state.storyObj && !this.state.commentsObjs) {
-      fetchStoryCommentsObjs(this.state.storyObj)
-    }
+
   }
 
   render() {
