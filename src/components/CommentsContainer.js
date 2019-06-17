@@ -1,8 +1,24 @@
 import React from 'react';
 
+import CommentList from './CommentList.js';
+import Comment from './Comment.js';
+
 class CommentsContainer extends React.Component {
   state = {
     commentsObj: null
+  }
+
+  commentsRender(comments) {
+    console.log(comments)
+    const output = comments.map(comment => {
+      return (<CommentList key={comment.id} className="Comment-List">
+                <Comment className="Comment">
+                </Comment>
+              </CommentList>
+
+      );
+    });
+    return output;
   }
 
   componentDidMount() {
@@ -10,10 +26,20 @@ class CommentsContainer extends React.Component {
   }
 
   render() {
+
+    let output
+
+    if (this.state.commentsObj) {
+      const {kids} = this.state.commentsObj;
+      console.log(kids)
+      output = this.commentsRender(kids)
+    }
+
     return (
       <div>
-        Comments container
-        {this.props.children}
+        <CommentList>
+          {output}
+        </CommentList>
       </div>
     )
   }
