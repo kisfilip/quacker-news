@@ -3,6 +3,7 @@ import fetchTopStoriesObjs from './api/fetchTopStoriesObjs.js';
 import fetchStoryCommentsObjs from './api/fetchStoryCommentsObjs.js';
 
 import StoryListItem from './StoryListItem.js';
+import CommentsContainer from './CommentsContainer.js';
 
 class StoryCommentsContainer extends React.Component {
   state = {
@@ -40,7 +41,11 @@ class StoryCommentsContainer extends React.Component {
 
     let comments = "loading";
     if (commentsObj) {
-      comments = "comments"
+      comments = (
+        <CommentsContainer
+          commentsObj={commentsObj}
+        />
+      )
     }
 
     return (
