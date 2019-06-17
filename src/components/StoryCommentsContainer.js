@@ -6,7 +6,7 @@ import StoryListItem from './StoryListItem.js';
 
 class StoryCommentsContainer extends React.Component {
   state = {
-    storyObj: null,
+    loading: true,
     commentsObj: null
   }
 
@@ -17,6 +17,7 @@ class StoryCommentsContainer extends React.Component {
       return commentsObj
     }).then(resolved => this.setState({
       commentsObj: resolved,
+      loading: false
     }));
   }
 
@@ -26,9 +27,18 @@ class StoryCommentsContainer extends React.Component {
 
   render() {
     console.log(this.state)
+    const {commentsObj} = this.state
+    let story = null;
+    let comments = "loading";
+    if (this.state.commentsObj) {
+      story = (<StoryListItem
+                storyObj = {commentsObj}
+                key = {commentsObj.id}
+              />);
+    }
     return (
       <div>
-
+        {story}
       </div>
     );
   }
