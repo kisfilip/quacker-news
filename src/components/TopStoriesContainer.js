@@ -7,8 +7,8 @@ import StoryListItem from './StoryListItem.js';
 
 class TopStoriesContainer extends React.Component {
   state = {
-    topStoriesObjs: null,
-    pageId: null,
+    topStoriesObjs: [],
+    pageId: 1,
     navigateBackToggle: true
   }
 
@@ -25,42 +25,41 @@ class TopStoriesContainer extends React.Component {
   // Initial fire when topStoriesIds are recieved.
   // Successive fire when url/path changes.
   componentDidUpdate() {
-    let pageNum = 1; // Initial display page.
+    const pageNum = this.props.match.params.id ? Number(this.props.match.params.id) : 1;
+    const topStories = this.findPageTopStories(pageNum);
 
-    if (this.props.match.params.id) {
-      pageNum = Number(this.props.match.params.id); // Set display page via url/path.
+    if (topStories) {
+      if (this.state.pageId !== pageNum) this.setState({pageId: pageNum});
     }
-
-    if (this.state.pageId !== this.props.match.params.id) {
+    else {
       fetchTopStoriesObjs(this.props.topStoriesIds, pageNum)
-        .then(resolved => this.setState({
-          topStoriesObjs: resolved,
+        .then(stories => this.setState({
+          topStoriesObjs: this.state.topStoriesObjs.concat({pageNum, stories}),
 
           // Prevents componentDidUpdate infinite loop.
           // Initial opening of home page sets pageId to undefined.
-          pageId: this.props.match.params.id
+          pageId: pageNum
         }));
     }
   }
 
   render() {
-    let storiesList;
+    let orderNum = (this.state.pageId - 1) * 30; // Used for ordering StoryListItem-s.
 
-    if (this.state.topStoriesObjs) {
-      let orderNum = (this.state.pageId - 1) * 30; // Used for ordering StoryListItem-s.
-      if (!orderNum) {orderNum = 0}; // Prevents undefined value on initial app load.
+    const storiesObj = this.findPageTopStories(this.state.pageId);
+    const stories = storiesObj ? storiesObj.stories : [];
 
-      storiesList = this.state.topStoriesObjs.map(storyObj => {
-        orderNum++;
-        return (
-          <StoryListItem
-            storyObj={storyObj}
-            key={storyObj.id}
-            orderNum={orderNum}
-          />
-        );
-      });
-    };
+    const storiesList = stories.map(storyObj => {
+      orderNum++;
+      return (
+        <StoryListItem
+          storyObj={storyObj}
+          key={storyObj.id}
+          orderNum={orderNum}
+        />
+      );
+    });
+
     let urlMatch = "page2";
     if (this.props.match.params.id) {
       urlMatch = "page" + (Number(this.props.match.params.id) + 1);
@@ -90,6 +89,10 @@ class TopStoriesContainer extends React.Component {
         </Link>
       </div>
     );
+  }
+
+  findPageTopStories = pageNum => {
+    return this.state.topStoriesObjs.find(topStory => topStory.pageNum === pageNum);
   }
 }
 
