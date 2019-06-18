@@ -31,8 +31,11 @@ class StoryCommentsContainer extends React.Component {
     );
   }
 
-  componentDidUpdate() {
-
+  componentWillUnmount() {
+    let id = window.setTimeout(function() {}, 0);
+    while (id--) {
+      window.clearTimeout(id)
+    }
   }
 
   render() {
