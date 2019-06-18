@@ -2,27 +2,27 @@ import React from 'react';
 import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
 import fetchTopStoriesObjs from './api/fetchTopStoriesObjs.js';
-
+import AwesomeDebouncePromise from 'awesome-debounce-promise';
 import StoryListItem from './StoryListItem.js';
 
 class TopStoriesContainer extends React.Component {
   state = {
     topStoriesObjs: [],
     pageId: 1,
-    navigateBackToggle: true
+    backNavToggle: true
+  }
+
+  throttledFetchTopStoriesObjs = AwesomeDebouncePromise(fetchTopStoriesObjs, 300);
+
+  findPageTopStories = pageNum => {
+    return this.state.topStoriesObjs.find(topStory => topStory.pageNum === pageNum);
   }
 
   componentDidMount() {
-    // This will only fire if a component REmounts.
-    // Since the topStoriesIds are not available on initial mount,
-    // this will ensure that the toggle triggers the componentDidUpdate
-    // only when navigating back from a story.
-    if (this.props.topStoriesIds) {
-      this.setState({navigateBackToggle: !this.state.navigateBackToggle})
-    }
+    // Render page when navigating back from a story.
+    this.setState({backNavToggle: !this.state.backNavToggle});
   }
 
-  // Initial fire when topStoriesIds are recieved.
   // Successive fire when url/path changes.
   componentDidUpdate() {
     const pageNum = this.props.match.params.id ? Number(this.props.match.params.id) : 1;
@@ -32,12 +32,12 @@ class TopStoriesContainer extends React.Component {
       if (this.state.pageId !== pageNum) this.setState({pageId: pageNum});
     }
     else {
-      fetchTopStoriesObjs(this.props.topStoriesIds, pageNum)
+      // Resolve only the last API call if next/previous is spammed.
+      this.throttledFetchTopStoriesObjs(this.props.topStoriesIds, pageNum)
         .then(stories => this.setState({
           topStoriesObjs: this.state.topStoriesObjs.concat({pageNum, stories}),
 
           // Prevents componentDidUpdate infinite loop.
-          // Initial opening of home page sets pageId to undefined.
           pageId: pageNum
         }));
     }
@@ -64,15 +64,7 @@ class TopStoriesContainer extends React.Component {
     if (this.props.match.params.id) {
       urlMatch = "page" + (Number(this.props.match.params.id) + 1);
     }
-    // TODO: Disable link button via css pointer-events
-    //       until page loads to prevent stacking api calls
-    //       (the current solution works but for example -
-    //       if a user clicks the 'next 30 items' button
-    //       multiple times in a row (until the page has finished loading),
-    //       the consequent clicks will stack api calls on top of each other).
-    // TODO: Navigating back should load previously fetched objects instead
-    //       of fetching them again - this can be solved by pushing new objects
-    //       to state, and getting them from state when navigating back.
+
     return (
       <div className="Stories-container">
         <div className="Stories-list">
@@ -89,10 +81,6 @@ class TopStoriesContainer extends React.Component {
         </Link>
       </div>
     );
-  }
-
-  findPageTopStories = pageNum => {
-    return this.state.topStoriesObjs.find(topStory => topStory.pageNum === pageNum);
   }
 }
 
