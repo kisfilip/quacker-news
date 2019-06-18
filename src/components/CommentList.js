@@ -11,13 +11,15 @@ class CommentList extends React.Component {
   }
 
   render() {
+    console.log(this.props.commentObj)
     const output = this.props.commentObj.kids ?
       this.props.commentObj.kids.map(comment => {
+        if (comment.deleted) return
         return <CommentList commentObj={comment} />
           }) : null;
 
     return (
-      <div className={`Comment-list ${this.state.collapsed && "Collapsed"}`}>
+      <div className={`Comment-list ${this.state.collapsed ? "Collapsed" : ""}`}>
         <Comment
           commentObj={this.props.commentObj}
           collapseToggle={this.collapseToggle}
