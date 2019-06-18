@@ -18,10 +18,10 @@ class StoryCommentsContainer extends React.Component {
       this.setState({storyObj: resolved[0]});
       const commentsObj = fetchStoryCommentsObjs(resolved[0]);
       return commentsObj
-    }).then(resolved => this.setState({
+    }).then(resolved => setTimeout(() => this.setState({
       commentsObj: resolved,
       loading: false
-    }));
+    }), 10000));
   }
 
   componentDidUpdate() {

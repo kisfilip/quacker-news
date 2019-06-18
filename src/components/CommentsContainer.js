@@ -8,38 +8,19 @@ class CommentsContainer extends React.Component {
     commentsObj: null
   }
 
-  commentsRender(comments) {
-    console.log(comments)
-    const output = comments.map(comment => {
-      return (<CommentList key={comment.id} className="Comment-List">
-                <Comment className="Comment">
-                </Comment>
-              </CommentList>
-
-      );
-    });
-    return output;
-  }
-
   componentDidMount() {
     this.setState({commentsObj: this.props.commentsObj});
   }
 
   render() {
-
-    let output
-
-    if (this.state.commentsObj) {
-      const {kids} = this.state.commentsObj;
-      console.log(kids)
-      output = this.commentsRender(kids)
-    }
+    const output = this.state.commentsObj ?
+      this.state.commentsObj.kids.map(comment => {
+        return <CommentList commentObj={comment} />
+          }) : "Loading";
 
     return (
       <div>
-        <CommentList>
-          {output}
-        </CommentList>
+        {output}
       </div>
     )
   }

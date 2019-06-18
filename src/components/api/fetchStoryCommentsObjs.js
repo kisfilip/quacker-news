@@ -12,6 +12,7 @@ const fetchStoryCommentsObjs = function(storyObj) {
         .then(values => {
           obj.kids = values;
           obj.kids.forEach(obj => deepIdToObj(obj));
+          console.log(obj)
           return obj;
         });
     };
