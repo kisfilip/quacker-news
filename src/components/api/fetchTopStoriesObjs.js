@@ -2,7 +2,7 @@ const fetchTopStoriesObjs = function(topStoriesIds, pageNum) {
   let pageIds
   if (typeof topStoriesIds == "string") {
     pageIds = [topStoriesIds];
-  } else if (typeof topStoriesIds == "object") {
+  } else if (typeof topStoriesIds == "object" && topStoriesIds != null) {
     pageIds = topStoriesIds.slice(
     30 * (pageNum - 1),
     30 * pageNum
