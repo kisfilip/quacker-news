@@ -16,14 +16,13 @@ class Comment extends React.Component {
     const commentObj = this.props.commentObj
     if (!commentObj.text) return null
     return (
-      <div>
+      <div className="Comment">
         <header>
           <span>
-            "comment"
             {commentObj.by}
           </span>
-          <span>
-            +
+          <span onClick={this.props.collapseToggle}>
+            {this.props.collapsed ? "[+]" : "[-]"}
           </span>
         </header>
         <div>

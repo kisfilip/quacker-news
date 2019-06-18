@@ -21,7 +21,7 @@ class StoryCommentsContainer extends React.Component {
     }).then(resolved => setTimeout(() => this.setState({
       commentsObj: resolved,
       loading: false
-    }), 10000));
+    }), 0));
   }
 
   componentDidUpdate() {

@@ -19,7 +19,7 @@ class CommentsContainer extends React.Component {
           }) : "Loading";
 
     return (
-      <div>
+      <div className="Comments-container">
         {output}
       </div>
     )
