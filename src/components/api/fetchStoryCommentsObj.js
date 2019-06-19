@@ -1,5 +1,6 @@
 const fetchStoryCommentsObjs = function(storyObj) {
   function deepIdToObj(obj) {
+    if (obj == null) return;
     if (obj.hasOwnProperty("kids")) {
       const fetchArr = obj.kids.map(id => {
         const fetched = fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`);
