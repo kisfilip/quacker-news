@@ -1,6 +1,7 @@
 import React from 'react';
 import fetchTopStoriesObjs from './api/fetchTopStoriesObjs.js';
-import fetchStoryCommentsObjs from './api/fetchStoryCommentsObjs.js';
+import fetchStoryCommentsObj from './api/fetchStoryCommentsObj.js';
+import deepResolveChecker from './api/deepResolveChecker.js';
 
 import StoryListItem from './StoryListItem.js';
 import CommentsContainer from './CommentsContainer.js';
@@ -12,24 +13,33 @@ class StoryCommentsContainer extends React.Component {
     commentsObj: null
   }
 
+  setStateCallback = (storyCommentsObj) => {
+    this.setState({
+      commentsObj: storyCommentsObj,
+      loading: false
+    });
+  }
+
   componentDidMount() {
     fetchTopStoriesObjs(this.props.match.params.id)
     .then(resolved => {
       this.setState({storyObj: resolved[0]});
-      const commentsObj = fetchStoryCommentsObjs(resolved[0]);
+      const commentsObj = fetchStoryCommentsObj(resolved[0]);
       return commentsObj
-    }).then(resolved => this.setState({
-      commentsObj: resolved,
-      loading: false
-    }));
+    }).then(resolved =>
+      deepResolveChecker(resolved, this.setStateCallback)
+    );
   }
 
-  componentDidUpdate() {
-
+  componentWillUnmount() {
+    let id = window.setTimeout(function() {}, 0);
+    while (id--) {
+      window.clearTimeout(id)
+    }
   }
 
   render() {
-    const {storyObj, commentsObj} = this.state
+    const {storyObj, commentsObj, loading} = this.state
 
     let story = null;
     if (storyObj) {
@@ -39,7 +49,10 @@ class StoryCommentsContainer extends React.Component {
               />);
     };
 
-    let comments = "loading";
+    let comments = "";
+
+    if (loading) {comments = "Loading, please wait"}
+
     if (commentsObj) {
       comments = (
         <CommentsContainer
