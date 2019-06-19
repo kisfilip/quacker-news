@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import QuackerNews from './QuackerNews';
 import * as serviceWorker from './serviceWorker';
-
 import {BrowserRouter} from 'react-router-dom';
 
 ReactDOM.render(

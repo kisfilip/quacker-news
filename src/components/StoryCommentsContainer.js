@@ -2,7 +2,6 @@ import React from 'react';
 import fetchTopStoriesObjs from './api/fetchTopStoriesObjs.js';
 import fetchStoryCommentsObj from './api/fetchStoryCommentsObj.js';
 import deepResolveChecker from './api/deepResolveChecker.js';
-
 import StoryListItem from './StoryListItem.js';
 import CommentsContainer from './CommentsContainer.js';
 

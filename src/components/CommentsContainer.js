@@ -1,5 +1,4 @@
 import React from 'react';
-
 import CommentList from './CommentList.js';
 
 class CommentsContainer extends React.Component {
