@@ -6,6 +6,7 @@ const deepResolveChecker = function(storyObj, setStateCallback) {
     if (storyCommentsObj === undefined) return false;
     if (storyCommentsObj.hasOwnProperty("kids")) {
       return storyCommentsObj.kids.some(comment => {
+        if (comment == null) return;
         if (comment.hasOwnProperty("kids")) {
           return checkIfDone(comment);
         }
