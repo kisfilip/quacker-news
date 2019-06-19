@@ -39,7 +39,7 @@ class StoryCommentsContainer extends React.Component {
   }
 
   render() {
-    const {storyObj, commentsObj} = this.state
+    const {storyObj, commentsObj, loading} = this.state
 
     let story = null;
     if (storyObj) {
@@ -49,7 +49,10 @@ class StoryCommentsContainer extends React.Component {
               />);
     };
 
-    let comments = "loading";
+    let comments = "No comments";
+
+    if (loading) {comments = "Loading, please wait"}
+
     if (commentsObj) {
       comments = (
         <CommentsContainer

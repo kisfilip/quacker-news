@@ -3,6 +3,8 @@ const deepResolveChecker = function(storyObj, setStateCallback) {
   checkByTimeout(checkIfDone(storyObj), setStateCallback);
 
   function checkIfDone(storyCommentsObj) {
+
+    if (storyCommentsObj == undefined) return false
     if (storyCommentsObj.hasOwnProperty("kids")) {
       return storyCommentsObj.kids.some(comment => {
         if (comment.hasOwnProperty("kids")) {
@@ -17,6 +19,7 @@ const deepResolveChecker = function(storyObj, setStateCallback) {
     setTimeout(() => {
       if (!checkFunc) {
         console.log("checked")
+        console.log(storyObj)
         setStateCallback(storyObj);
       } else {
         console.log("not checked")
