@@ -51,8 +51,6 @@ class StoryCommentsContainer extends React.Component {
 
     let comments = "";
 
-    if (loading) {comments = "Loading, please wait"}
-
     if (commentsObj) {
       comments = (
         <CommentsContainer
@@ -65,6 +63,7 @@ class StoryCommentsContainer extends React.Component {
       <div>
         {story}
         {comments}
+        {loading && (<div className="Loading"> Loading, please wait... </div>)}
       </div>
     );
   }

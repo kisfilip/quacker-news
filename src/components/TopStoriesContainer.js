@@ -41,6 +41,7 @@ class TopStoriesContainer extends React.Component {
           pageId: pageNum
         }));
     }
+    window.scrollTo(0, 0);
   }
 
   render() {

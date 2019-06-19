@@ -2,8 +2,8 @@ import React from 'react';
 
 class Comment extends React.Component {
   render() {
-    const commentObj = this.props.commentObj
-    if (!commentObj.text) return null
+    const commentObj = this.props.commentObj;
+    if (!commentObj.text) return null;
     return (
       <div className="Comment">
         <header>

@@ -3,29 +3,25 @@ const deepResolveChecker = function(storyObj, setStateCallback) {
   checkByTimeout(checkIfDone(storyObj), setStateCallback);
 
   function checkIfDone(storyCommentsObj) {
-
-    if (storyCommentsObj == undefined) return false
+    if (storyCommentsObj === undefined) return false;
     if (storyCommentsObj.hasOwnProperty("kids")) {
       return storyCommentsObj.kids.some(comment => {
         if (comment.hasOwnProperty("kids")) {
-          return checkIfDone(comment)
+          return checkIfDone(comment);
         }
-        return typeof comment == "number"
+        return typeof comment == "number";
       });
     };
   };
 
-  function checkByTimeout(checkFunc, setStateCallback) {
+  function checkByTimeout(checking, setStateCallback) {
     setTimeout(() => {
-      if (!checkFunc) {
-        console.log("checked")
-        console.log(storyObj)
+      if (!checking) {
         setStateCallback(storyObj);
       } else {
-        console.log("not checked")
         checkByTimeout(checkIfDone(storyObj), setStateCallback)
       }
-    }, 500);
+    }, 500); //Checks if nested comment objects are resolved.
   }
 }
 

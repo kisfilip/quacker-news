@@ -11,11 +11,10 @@ class CommentList extends React.Component {
   }
 
   render() {
-    console.log(this.props.commentObj)
     const output = this.props.commentObj.kids ?
       this.props.commentObj.kids.map(comment => {
-        if (comment.deleted) return
-        return <CommentList commentObj={comment} />
+        if (comment.deleted) return;
+        return <CommentList key={comment.id} commentObj={comment} />
           }) : null;
 
     return (
