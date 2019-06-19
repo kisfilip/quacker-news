@@ -1,5 +1,6 @@
 const fetchTopStoriesObjs = function(topStoriesIds, pageNum) {
-  let pageIds
+  let pageIds;
+  if (topStoriesIds == null) return;
   if (typeof topStoriesIds == "string") {
     pageIds = [topStoriesIds];
   } else if (typeof topStoriesIds == "object" && topStoriesIds != null) {
