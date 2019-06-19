@@ -2,6 +2,18 @@
 
 A Hacker News clone project.
 
+![Demo gif](./demo.gif)
+
+### Requirements
+1. [Node.js](https://nodejs.org/en/)
+2. [React](https://reactjs.org/)
+3. [npm](https://www.npmjs.com/)
+
+### Setup
+1. git clone https://gitlab.com/kisfilip/quacker-news.git
+2. cd quacker-news
+3. npm install
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
