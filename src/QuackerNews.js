@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, Link} from 'react-router-dom';
 import './QuackerNews.scss';
 
 import fetchTopStoriesIds from './components/api/fetchTopStoriesIds.js';
@@ -20,11 +20,12 @@ class QuackerNews extends React.Component {
     return (
       <div className="App-quacker-news">
         <header>
-          <h1>
-            Quacker News
-          </h1>
+          <Link to="/">
+            <h1>
+              Quacker News
+            </h1>
+          </Link>
         </header>
-        HelloWorld!
         <Switch>
           <Route exact path="/" render={() =>
             <TopStoriesContainer topStoriesIds={this.state.topStoriesIds}/>

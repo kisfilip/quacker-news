@@ -2,7 +2,6 @@ import React from 'react';
 import fetchTopStoriesObjs from './api/fetchTopStoriesObjs.js';
 import fetchStoryCommentsObj from './api/fetchStoryCommentsObj.js';
 import deepResolveChecker from './api/deepResolveChecker.js';
-
 import StoryListItem from './StoryListItem.js';
 import CommentsContainer from './CommentsContainer.js';
 
@@ -51,8 +50,6 @@ class StoryCommentsContainer extends React.Component {
 
     let comments = "";
 
-    if (loading) {comments = "Loading, please wait"}
-
     if (commentsObj) {
       comments = (
         <CommentsContainer
@@ -65,6 +62,7 @@ class StoryCommentsContainer extends React.Component {
       <div>
         {story}
         {comments}
+        {loading && (<div className="Loading"> Loading, please wait... </div>)}
       </div>
     );
   }

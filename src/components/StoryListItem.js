@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {Link} from 'react-router-dom';
 
 class StoryListItem extends React.Component {
@@ -23,7 +22,7 @@ class StoryListItem extends React.Component {
         <article>
           <div>
             <h1>
-              <a href={url} target="_blank">
+              <a href={url} target="_blank" rel="noopener noreferrer">
                 {title}
               </a>
             </h1>

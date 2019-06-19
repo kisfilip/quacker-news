@@ -1,8 +1,8 @@
 import React from 'react';
 import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
-import fetchTopStoriesObjs from './api/fetchTopStoriesObjs.js';
 import AwesomeDebouncePromise from 'awesome-debounce-promise';
+import fetchTopStoriesObjs from './api/fetchTopStoriesObjs.js';
 import StoryListItem from './StoryListItem.js';
 
 class TopStoriesContainer extends React.Component {
@@ -41,6 +41,7 @@ class TopStoriesContainer extends React.Component {
           pageId: pageNum
         }));
     }
+    window.scrollTo(0, 0);
   }
 
   render() {
