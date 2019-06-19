@@ -9,7 +9,7 @@ class TopStoriesContainer extends React.Component {
   state = {
     topStoriesObjs: [],
     pageId: 1,
-    backNavToggle: true
+    renderToggle: true
   }
 
   throttledFetchTopStoriesObjs = AwesomeDebouncePromise(fetchTopStoriesObjs, 300);
@@ -20,7 +20,7 @@ class TopStoriesContainer extends React.Component {
 
   componentDidMount() {
     // Render page when navigating back from a story.
-    this.setState({backNavToggle: !this.state.backNavToggle});
+    if (this.props.history.length > 1) {this.setState({renderToggle: !this.state.renderToggle})};
   }
 
   // Successive fire when url/path changes.

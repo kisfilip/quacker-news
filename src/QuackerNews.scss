@@ -8,6 +8,10 @@
   display: flex;
   flex-direction: column;
   > header {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    border-bottom: 3px solid #eee;
     padding-left: 2rem;
     display: flex;
     a {
@@ -17,6 +21,10 @@
         margin: 0;
       }
     }
+  }
+  &[variant="sticky"] {
+    position: sticky;
+    top: 46px;
   }
 }
 
@@ -82,6 +90,13 @@
   color: #111;
   > span {
     font-weight: bold;
+  }
+}
+
+.Story-comments-container {
+  .Story-list-item {
+    position: sticky;
+    top: 46px;
   }
 }
 
