@@ -49,7 +49,7 @@ class StoryCommentsContainer extends React.Component {
               />);
     };
 
-    let comments = "No comments";
+    let comments = "";
 
     if (loading) {comments = "Loading, please wait"}
 
