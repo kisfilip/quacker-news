@@ -10,7 +10,7 @@ A Hacker News clone project.
 3. [npm](https://www.npmjs.com/)
 
 ### Setup
-1. git clone https://gitlab.com/kisfilip/quacker-news.git
+1. git clone https://github.com/kisfilip/quacker-news.git
 2. cd quacker-news
 3. npm install
 
